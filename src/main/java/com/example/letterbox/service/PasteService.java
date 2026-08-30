@@ -27,14 +27,25 @@ public class PasteService {
     private final PasteAccessPolicy pasteAccessPolicy;
     private final Clock clock;
 
+    /**
+     * 
+     * @param pasteRepository
+     * @param pasteIdGenerator
+     * @param pasteCache
+     * @param pasteExpiryPolicy
+     * @param pasteAccessPolicy
+     * @param clock
+     * @breif
+     *        We allow the constructor caller to pass in the type of the object,
+     *        this allows for loose coupling.
+     */
     public PasteService(
             PasteRepository pasteRepository,
             PasteIdGenerator pasteIdGenerator,
             PasteCache pasteCache,
             PasteExpiryPolicy pasteExpiryPolicy,
             PasteAccessPolicy pasteAccessPolicy,
-            Clock clock
-    ) {
+            Clock clock) {
         this.pasteRepository = pasteRepository;
         this.pasteIdGenerator = pasteIdGenerator;
         this.pasteCache = pasteCache;
@@ -42,9 +53,10 @@ public class PasteService {
         this.pasteAccessPolicy = pasteAccessPolicy;
         this.clock = clock;
     }
+
     /**
      * @param paste the paste to add
-     * @return the added paste  
+     * @return the added paste
      */
     public Paste addPaste(@NotNull PasteBody paste) {
         Paste newPaste = new Paste();
@@ -82,10 +94,11 @@ public class PasteService {
     public boolean checkIfPassProtected(String pasteId) {
         return pasteAccessPolicy.isProtected(getActivePaste(pasteId));
     }
+
     /**
-     * @param pasteId the paste id
+     * @param pasteId  the paste id
      * @param password the password
-     * @return the paste  
+     * @return the paste
      */
     public Paste getPaste(String pasteId, String password) {
         Paste paste = getActivePaste(pasteId);
@@ -95,7 +108,7 @@ public class PasteService {
 
     /**
      * @param pasteId the paste id
-     * @return true if the paste was deleted successfully  
+     * @return true if the paste was deleted successfully
      */
     public boolean deletePaste(String pasteId) {
         Paste paste = getActivePaste(pasteId);
@@ -103,9 +116,10 @@ public class PasteService {
         pasteCache.evict(paste.getPasteId());
         return true;
     }
+
     /**
      * @param pasteId the paste id
-     * @return the paste  
+     * @return the paste
      * @throws PasteNotFoundException if the paste is not found
      */
     private Paste getActivePaste(String pasteId) {
