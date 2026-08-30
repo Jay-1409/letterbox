@@ -8,6 +8,7 @@
 package com.example.letterbox.service.impl;
 
 import com.example.letterbox.service.PasteIdGenerator;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 @Component
+@Order(2)
 public class custom62BitUidGenerator implements PasteIdGenerator {
     private static final String UID_COUNTER_KEY = "codepaste:uid:counter";
     private static final String ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
