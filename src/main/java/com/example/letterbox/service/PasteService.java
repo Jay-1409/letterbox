@@ -60,9 +60,7 @@ public class PasteService {
      */
     public Paste addPaste(@NotNull PasteBody paste) {
         Paste newPaste = new Paste();
-        String pasteId = paste.getPasteId() == null || paste.getPasteId().isBlank()
-                ? pasteIdGenerator.nextId()
-                : paste.getPasteId();
+        String pasteId = pasteIdGenerator.nextId();
 
         newPaste.setPasteId(pasteId);
         newPaste.setPaste(paste.getPaste());
