@@ -11,10 +11,12 @@ Integrate through simple HTTP APIs, deploy it yourself, and scale with MongoDB a
 - Store and access text snippets via urls
 - Secure pastes with optional password-based access.
 - Support paste expiry with configurable duration 
-- High performance paste id generation engine (powered with the goods of URL shortner)
+- High-performance paste id generation engine (powered with the goods of URL shortner)
 - Supports multiple instances (you can scale it as your like)
 - Total number of pastes supported 2⁶² − 1 = 4,611,686,018,427,387,903
 - Default paste expiration after 30 days
+- Alternatively, there is a slug-based (example, `energetic-melon`) unique ID support as well, which is configurable by setting `LETTERBOX_ID_GENERATOR`. the two options are `62bit` & `slug`. by default it is `62bit`
+
 ---
 
 ## Installation
